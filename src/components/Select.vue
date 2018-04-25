@@ -378,6 +378,8 @@
         </li>
       </ul>
     </transition>
+
+    <input type="hidden" :name="name" :value="inputValue">
   </div>
 </template>
 
@@ -671,6 +673,25 @@
       },
 
       /**
+       * Sets the name of the value.
+       * @type {String}
+       * @default {null}
+       */
+      valueName: {
+        type: String,
+        default: 'id',
+      },
+
+      /**
+       * Sets the name of the input element.
+       * @type {String}
+       * @default {null}
+       */
+      name: {
+        type: String
+      },
+
+      /**
        * Sets RTL support. Accepts 'ltr', 'rtl', 'auto'.
        * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir
        * @type {String}
@@ -954,6 +975,14 @@
     },
 
     computed: {
+
+      inputValue() {
+        if(this.value === null) return null;
+        if (typeof this.value === 'object') {
+          return this.value[this.valueName];
+        }
+        return this.value;
+      },
 
       /**
        * Classes to be output on .dropdown
