@@ -977,11 +977,11 @@
     computed: {
 
       inputValue() {
-        if(this.value === null) return null;
-        if (typeof this.value === 'object') {
-          return this.value[this.valueName];
+        if(this.mutableValue === null) return null;
+        if (typeof this.mutableValue === 'object') {
+          return this.mutableValue[this.valueName];
         }
-        return this.value;
+        return this.mutableValue;
       },
 
       /**
